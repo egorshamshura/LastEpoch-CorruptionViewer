@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: MelonInfo(typeof(CorruptionViewer.CorruptionViewer), "Medical Viewer", "1.0.0", "medical")]
+[assembly: MelonInfo(typeof(CorruptionViewer.CorruptionViewer), "Medical Viewer", "1.0.1", "medical")]
 [assembly: MelonGame("Eleventh Hour Games", "Last Epoch")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
