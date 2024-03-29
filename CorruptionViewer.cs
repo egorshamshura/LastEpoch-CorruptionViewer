@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 
 
 namespace CorruptionViewer
@@ -15,7 +16,7 @@ namespace CorruptionViewer
         public static CorruptionViewer __instance;
         private static MelonPreferences_Category CorruptionViewerCategory;
         public static Dictionary<TimelineID, int> monolithCorrupt;
-        public const string storageCorruptionPath = "UserData/CorruptionStorage.txt";
+        public const string storageCorruptionPath = "UserData/CorruptionStorage.json";
         
         public override void OnEarlyInitializeMelon()
         {
@@ -40,6 +41,8 @@ namespace CorruptionViewer
                     {
                         monolithCorrupt[tl] = 0;
                     }
+                    JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
+                    writer.Write(JsonSerializer.Serialize(CorruptionViewer.monolithCorrupt, options));
                 }
             }
             else
@@ -48,10 +51,7 @@ namespace CorruptionViewer
                 {
                     using (StreamReader reader = new StreamReader(stream, Encoding.UTF8, false))
                     {
-                        foreach (TimelineID tl in Enum.GetValues(typeof(TimelineID)))
-                        {
-                            monolithCorrupt[tl] = int.Parse(reader.ReadLine());
-                        }
+                        monolithCorrupt = JsonSerializer.Deserialize<Dictionary<TimelineID, int>>(reader.ReadToEnd());
                     }
                 }
             }
