@@ -1,20 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Il2Cpp;
-using Il2CppTMPro;
-using MelonLoader;
-using UnityEngine;
-using UnityEngine.Localization.Components;
-using UnityEngine.UI;
-using HarmonyLib;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
-using System;
-using System.Collections;
 using Il2Cpp;
 using System.IO;
 

@@ -14,6 +14,7 @@ To start using the mod, download .dll file and melonloader.
 2) Put into Last Epoch folder
 
 The current values of corruption can be found on the map when you select an island. The name of the monolith will look like: MonolithName (Corruption)
+Version 1.0.0 does not support different characters. 
 
 [melonwiki]:https://melonwiki.xyz/#/
 
