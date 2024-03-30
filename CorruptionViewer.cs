@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using Il2CppLE.Telemetry;
+using Il2CppLE.Data;
 
 
 namespace CorruptionViewer
@@ -17,6 +19,7 @@ namespace CorruptionViewer
         private static MelonPreferences_Category CorruptionViewerCategory;
         public static Dictionary<TimelineID, int> monolithCorrupt;
         public const string storageCorruptionPath = "UserData/CorruptionStorage.json";
+        public static HashSet<CharacterData> characters;
         
         public override void OnEarlyInitializeMelon()
         {
@@ -74,8 +77,10 @@ namespace CorruptionViewer
             private static void Prefix(object[] __args)
             {
                 UIWaypoint waypoint = (UIWaypoint) __args[3];
-                Utility.changeMonolithName(waypoint.monolithIslandInfo);
-                Utility.updateCorruptionInFile();
+                if (waypoint.monolithWaypoint)
+                {
+                    Utility.changeMonolithName(waypoint.monolithIslandInfo);
+                }
             }
         }
     }

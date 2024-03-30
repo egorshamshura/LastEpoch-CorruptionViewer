@@ -15,6 +15,7 @@ namespace CorruptionViewer
             islandName.Append(" (" + CorruptionViewer.monolithCorrupt[timelineID] + ")");
             __instance.IslandName.SetText(String.Empty);
             __instance.IslandName.SetText(islandName.ToString());
+            updateCorruptionInFile();
         }
 
         public static void updateCorruptionInFile()
