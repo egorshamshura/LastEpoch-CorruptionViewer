@@ -25,19 +25,25 @@ namespace CorruptionViewer
         {
             __instance = this;
             CorruptionViewerCategory = MelonPreferences.CreateCategory("CorruptionViewer");
-            CorruptionViewerCategory.SetFilePath(storageCorruptionPath, autoload: true);
-            if (!File.Exists(storageCorruptionPath)) 
-            {
-                File.Create(storageCorruptionPath);
-            }
+        }
+
+        public override void OnDeinitializeMelon()
+        {
+            Utility.updateCorruptionInFile();
         }
 
         public override void OnPreferencesLoaded()
         {
+            if (!File.Exists(storageCorruptionPath))
+            {
+                var file = File.Create(storageCorruptionPath);
+                file.Close();
+            }
             int lineCount = File.ReadLines(storageCorruptionPath).Count();
+            Console.WriteLine(lineCount);
             monolithCorrupt = new Dictionary<TimelineID, int>();
             if (lineCount == 0)
-            {
+            { 
                 using (StreamWriter writer = new StreamWriter(storageCorruptionPath))
                 {
                     foreach (TimelineID tl in Enum.GetValues(typeof(TimelineID)))
@@ -46,6 +52,7 @@ namespace CorruptionViewer
                     }
                     JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
                     writer.Write(JsonSerializer.Serialize(CorruptionViewer.monolithCorrupt, options));
+                    writer.Close();
                 }
             }
             else
@@ -55,6 +62,7 @@ namespace CorruptionViewer
                     using (StreamReader reader = new StreamReader(stream, Encoding.UTF8, false))
                     {
                         monolithCorrupt = JsonSerializer.Deserialize<Dictionary<TimelineID, int>>(reader.ReadToEnd());
+                        reader.Close();
                     }
                 }
             }
@@ -81,6 +89,7 @@ namespace CorruptionViewer
                 {
                     Utility.changeMonolithName(waypoint.monolithIslandInfo);
                 }
+                Utility.updateCorruptionInFile();
             }
         }
     }

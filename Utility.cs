@@ -23,10 +23,9 @@ namespace CorruptionViewer
             File.WriteAllText(CorruptionViewer.storageCorruptionPath, String.Empty);
             JsonSerializerOptions options = new JsonSerializerOptions{ WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(CorruptionViewer.monolithCorrupt, options);
-            using (StreamWriter writer = new StreamWriter(CorruptionViewer.storageCorruptionPath))
-            {
-                writer.Write(jsonString);
-            }
+            if (jsonString == String.Empty)
+                return;
+            File.WriteAllText(CorruptionViewer.storageCorruptionPath, jsonString);
         }
     }
 }
