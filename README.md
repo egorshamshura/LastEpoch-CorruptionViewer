@@ -5,6 +5,19 @@
 
 The **CorruptionViewer** mod allows you to view the current corruption value of monoliths in Last Epoch directly on the world map, eliminating the need to log into Echoweb each time. Values are automatically logged to a file every time you enter an Echoweb.
 
+## Example Screenshots
+
+![Example Screenshot](assets/example1.jpg)
+
+How it was before installing the mod.
+
+![Example Screenshot](assets/example2.jpg)
+
+And how it looks with the mod installed.
+
+![Example Screenshot](assets/example3.jpg)
+
+
 ---
 
 ## Installation
